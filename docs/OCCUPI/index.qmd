@@ -1,0 +1,634 @@
+---
+title: "OCCUPI"
+title-slide-attributes:
+    data-background-image: "FLAVOUR Background image.png"
+    data-background-size: contain
+    data-background-opacity: "0.3"
+subtitle: "an investigator-initiated, multicentre, randomized, open-label, superiority trial in South Korea"
+author: "Jeongmin Seo"
+format: 
+  revealjs:
+    slide-number: true
+    transition: slide
+    auto-animate: false
+    theme: simple
+    footer: OCCUPI
+    reference-location: document
+    scrollable: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+library(knitr)
+library(kableExtra)
+library(magrittr)
+
+knitr::opts_chunk$set(echo=F, fig.align = "center", message=F, warning=F, fig.width = 3, fig.height = 4, cache=T)
+
+# Create a data frame for the table
+table_base <- data.frame(
+  Characteristic = c("Age (years)", 
+                     "Sex - Male", "Sex - Female", 
+                     "BMI (kg/m²)", 
+                     "Hypertension", 
+                     "Diabetes", "Diabetes requiring insulin", 
+                     "Creatinine clearance <60 mL/min", 
+                     "Dyslipidemia", 
+                     "Current smoker", 
+                     "Previous myocardial infarction", 
+                     "Previous PCI", 
+                     "Previous coronary bypass graft surgery", 
+                     "Previous stroke", 
+                     "Clinical presentation - Stable angina", "Clinical presentation - Acute coronary syndrome", 
+                     "Clinical presentation - Unstable angina", 
+                     "Clinical presentation - Non-ST-elevation myocardial infarction", 
+                     "Clinical presentation - ST-elevation myocardial infarction", 
+                     "Left ventricular ejection fraction (%)", 
+                     "Medication at discharge - Aspirin", 
+                     "Medication at discharge - P2Y12 inhibitor", 
+                     "Medication at discharge - Clopidogrel", 
+                     "Medication at discharge - Ticagrelor", 
+                     "Medication at discharge - Prasugrel", 
+                     "Medication at discharge - Statin", 
+                     "Medication at discharge - β blocker", 
+                     "Medication at discharge - ACE inhibitor or ARB"),
+  
+  `OCT-guided PCI (n=803)` = c("64 (57–70)", 
+                               "646 (80%)", "157 (20%)", 
+                               "24.8 (23.0–26.6)", 
+                               "466 (58%)", 
+                               "261 (33%)", "28 (3%)", 
+                               "53 (7%)", 
+                               "684 (85%)", 
+                               "149 (19%)", 
+                               "40 (5%)", 
+                               "171 (21%)", 
+                               "10 (1%)", 
+                               "38 (5%)", 
+                               "391 (49%)", "412 (51%)", 
+                               "248 (31%)", 
+                               "118 (15%)", 
+                               "46 (6%)", 
+                               "59.5 (8.8)", 
+                               "784 (98%)", 
+                               "790 (98%)", 
+                               "611 (76%)", 
+                               "144 (18%)", 
+                               "35 (4%)", 
+                               "770 (96%)", 
+                               "447 (56%)", 
+                               "450 (56%)"),
+  
+  `Angiography-guided PCI (n=801)` = c("64 (58–70)", 
+                                       "644 (80%)", "157 (20%)", 
+                                       "24.6 (22.9–26.6)", 
+                                       "451 (56%)", 
+                                       "262 (33%)", "29 (4%)", 
+                                       "57 (7%)", 
+                                       "661 (83%)", 
+                                       "158 (20%)", 
+                                       "42 (5%)", 
+                                       "159 (20%)", 
+                                       "14 (2%)", 
+                                       "46 (6%)", 
+                                       "423 (53%)", "378 (47%)", 
+                                       "215 (27%)", 
+                                       "105 (13%)", 
+                                       "58 (7%)", 
+                                       "59.7 (10.1)", 
+                                       "787 (98%)", 
+                                       "792 (99%)", 
+                                       "621 (78%)", 
+                                       "139 (17%)", 
+                                       "32 (4%)", 
+                                       "770 (96%)", 
+                                       "458 (57%)", 
+                                       "475 (59%)")
+)
+
+
+
+table_hr <- data.frame(
+  Characteristic = c(
+    "Primary endpoint",
+    "Major adverse cardiac event (composite of cardiac death, myocardial infarction, stent thrombosis, or ischaemia-driven target-vessel revascularisation)",
+    "Secondary endpoints",
+    "All-cause death",
+    "Cardiac death",
+    "Myocardial infarction",
+    "Spontaneous myocardial infarction",
+    "Target-vessel related",
+    "Non-target-vessel related",
+    "Periprocedural myocardial infarction*",
+    "Stent thrombosis",
+    "Definite",
+    "Probable",
+    "Ischaemia-driven target-vessel revascularisation",
+    "Target-lesion revascularisation",
+    "Non-target-lesion revascularisation",
+    "Any revascularisation",
+    "Stroke",
+    "Bleeding (BARC type 3 or 5)",
+    "Contrast-induced nephropathy†",
+    "Rate of OCT-defined stent optimisation‡",
+    "Post-hoc composite endpoints",
+    "Cardiac death, myocardial infarction, or stent thrombosis",
+    "Cardiac death, spontaneous myocardial infarction, stent thrombosis, or ischaemia-driven target-vessel revascularisation",
+    "Cardiac death, spontaneous myocardial infarction, or stent thrombosis"
+  ),
+  `OCT-guided PCI (n=803)` = c(
+    "", 
+    "37 (5%)", 
+    "", 
+    "5 (1%)", 
+    "1 (<1%)", 
+    "29 (4%)", 
+    "7 (1%)", 
+    "5 (1%)", 
+    "2 (<1%)", 
+    "22 (3%)", 
+    "4 (1%)", 
+    "2 (<1%)", 
+    "2 (<1%)", 
+    "12 (2%)", 
+    "9 (1%)", 
+    "3 (1%)", 
+    "19 (2%)", 
+    "1 (<1%)", 
+    "4 (1%)", 
+    "10 (1%)", 
+    "545 (71%)", 
+    "", 
+    "30 (4%)", 
+    "15 (2%)", 
+    "8 (1%)"
+  ),
+  `Angiography-guided PCI (n=801)` = c(
+    "", 
+    "59 (7%)", 
+    "", 
+    "6 (1%)", 
+    "5 (1%)", 
+    "40 (5%)", 
+    "19 (2%)", 
+    "17 (2%)", 
+    "2 (<1%)", 
+    "22 (3%)", 
+    "10 (1%)", 
+    "4 (1%)", 
+    "6 (1%)", 
+    "33 (4%)", 
+    "28 (4%)", 
+    "5 (1%)", 
+    "46 (6%)", 
+    "5 (1%)", 
+    "5 (1%)", 
+    "7 (1%)", 
+    "..", 
+    "", 
+    "42 (5%)", 
+    "38 (5%)", 
+    "20 (3%)"
+  ),
+  `HR (95% CI)` = c(
+    "", 
+    "0.62 (0.41–0.93)", 
+    "", 
+    "0.83 (0.25–2.72)", 
+    "0.20 (0.03–1.71)", 
+    "0.72 (0.45–1.16)", 
+    "0.36 (0.15–0.86)", 
+    "0.29 (0.11–0.79)", 
+    "0.99 (0.14–6.99)", 
+    "1.00 (0.55–1.80)", 
+    "0.40 (0.12–1.26)", 
+    "0.50 (0.09–2.71)", 
+    "0.33 (0.07–1.64)", 
+    "0.36 (0.18–0.69)", 
+    "0.32 (0.15–0.67)", 
+    "0.59 (0.14–2.47)", 
+    "0.40 (0.24–0.69)", 
+    "0.20 (0.02–1.70)", 
+    "0.80 (0.21–2.97)", 
+    "1.43 (0.54–3.75)", 
+    "", 
+    "", 
+    "0.70 (0.44–1.12)", 
+    "0.39 (0.21–0.70)", 
+    "0.39 (0.17–0.90)"
+  ),
+  `p value` = c(
+    "", 
+    "0.023", 
+    "", 
+    "0.76", 
+    "0.14", 
+    "0.18", 
+    "0.022", 
+    "0.022", 
+    "0.99", 
+    "0.99", 
+    "0.12", 
+    "0.42", 
+    "0.17", 
+    "0.0022", 
+    "0.0027", 
+    "0.47", 
+    "0.0009", 
+    "0.14", 
+    "0.74", 
+    "0.47", 
+    "", 
+    "", 
+    "0.14", 
+    "0.0014", 
+    "0.026"
+  )
+)
+
+```
+
+## Terminology
+
+<span style="font-size:75%">
+-   **Optical coherence tomography(OCT)**: an imaging technique uses interferometry with **short-coherence-length light** to obtain micrometer-level depth resolution to form **two- and three-dimensional images.**
+</span>  
+
+<span style="font-size:75%">
+-    **angiography**: an imaging technique used to **visualize desired target** performed by injecting a radio-opaque contrast agent into the blood vessel and imaging using **X-ray.**
+</span>  
+
+<span style="font-size:75%">
+-    **percutaneous coronary intervention(PCI)**: a treatment to **open a blocked artery** that carry oxygen-rich blood through body.
+</span>  
+
+------------------------------------------------------------------------
+
+## Introduction
+
+<span style="font-size:75%">
+Despite treatments with percutaneous coronary intervention (PCI), challenges remain especially for patients with complex lesions. PCI, a non-surgical method for improving blood flow may lead to **suboptimal outcomes in cases with complex lesions.** 
+</span>  
+<span style="font-size:75%">
+The main goal of the OCCUPI study is **to evaluate whether PCI guided by OCT results in better clinical outcomes** for patients with complex lesions. Specifically, the study compares the incidence of Major Adverse Cardiac Events (MACE) such as cardiac death, myocardial infarction, and stent thrombosis.
+</span>  
+
+------------------------------------------------------------------------
+
+## Introduction
+
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics("1_criteria.jpg")
+```
+
+------------------------------------------------------------------------
+
+## Recent studies
+
+<span style="font-size:75%">
+Although two relevant randomised trials investigated the effect of OCT-guided PCI on clinical outcomes, the ILUMIEN IV trial enrolled patients with not only angiographically complex lesions but also with high clinical risks or comorbidities (eg, diabetes), and the OCTOBER trial focused only on bifurcation lesions among various anatomical types of complex lesions. 
+</span>  
+
+<span style="font-size:75%">
+Authors found no previous **randomized controlled trials** that compared clinical outcomes of OCT-guided PCI with angiography-guided PCI exclusively in patients with **overall complex lesions.**
+</span>  
+
+------------------------------------------------------------------------
+
+## Method
+###### study design and patients
+
+<span style="font-size:75%">
+-   Designed to test 2-hyothesis but 2nd hypothesis was excluded due to safety concerns.
+</span>
+
+<span style="font-size:75%">
+-   Sample size calculation and endpoint were revised on the basis of the 1st hypothesis alone before patient enrollment began.
+</span>
+
+<span style="font-size:75%">
+-   The trial enrolled patients conducted at 20 hospitals in South Korea, aged 19–85 years who required PCI with drug-eluting stents (DES) for complex coronary artery lesions. After initial diagnostic angiography, patients with complex lesions were identified and randomized into two groups: one receiving PCI with OCT guidance and the other with angiography guidance alone.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### randomization and masking
+
+<span style="font-size:75%">
+-   Sample size calculation and endpoint were revised on the basis of the 1st hypothesis alone before patient enrollment began.
+</span>
+
+<span style="font-size:75%">
+-   Patients were randomly assigned 1:1 to receive PCI with OCT guidance or angiography guidance. Web-response permuted-block randomization(mixed blocks of four or six) was used at each participating site to allocate patients.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### procedures
+
+<span style="font-size:75%">
+-   In the OCT-guidance group, lesion characteristics were evaluated before and after stent placement to optimize stent selection and implantation. Post-stent OCT evaluation was strongly recommended to assess **stent expansion, apposition, and edge dissection.**
+</span>
+
+<span style="font-size:75%">
+-   In the angiography-guidance group, standard angiographic methods were used. Independent core laboratories analyzed all OCT data and angiograms.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### outcomes
+
+<span style="font-size:75%">
+-   The primary endpoint was the occurrence of **major adverse cardiac events (MACE)**, including cardiac death, myocardial infarction, stent thrombosis, or ischemia-driven target-vessel revascularization within one year.
+</span>
+
+<span style="font-size:75%">
+-   Secondary endpoints included rates of individual components of the primary endpoint, stroke, and bleeding events, among others.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### statistical analysis - **Event Rate Assumptions**:
+
+<span style="font-size:75%">
+-   **Assumed Event Rate**: The event rate for the primary endpoint was assumed to be **10%** based on previous pooled patient-level data from six randomized controlled trials. These trials had a median follow-up of 392 days.
+</span>
+
+<span style="font-size:75%">
+-   **Assumed Risk Reduction**: The study hypothesized a **40% risk reduction** of major adverse cardiac events for patients undergoing OCT-guided PCI. This assumption was derived from meta-analyses of prior studies comparing intravascular ultrasound with angiography.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### statistical analysis - Sample size Calculation
+
+<span style="font-size:75%">
+Out of a total of 6,128 patients who underwent PCI to recruit 1,604 patients for the study, 4,524 patients were excluded for not meeting the following selection criteria:
+</span>
+
+<span style="font-size:75%">
+-   **Absence of complex lesions**: To participate in the study, patients needed to have complex coronary artery lesions. Patients who did not have complex lesions as defined by the study were excluded.
+</span>
+
+<span style="font-size:75%">
+-   **Patients not requiring PCI**: Since the study focused on patients who required PCI, those who did not need PCI or had no plans for the procedure were also excluded.
+</span>
+
+<span style="font-size:75%">
+-   **Other exclusion criteria**: Patients younger than 19 years or older than 85 years, as well as those with other medical factors may have been excluded.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### statistical analysis - Sample size Calculation
+
+<span style="font-size:75%">
+-   The sample size was calculated to ensure 80% power to detect a 40% risk reduction in the primary endpoint with a two-sided α of 5% (statistical significance level). In this case, an 80% power means that if the OCT-guided PCI truly has better outcomes, the study has an 80% chance of detecting this effect correctly. An α = 5% means that the study accepts a 5% chance of making a mistake.
+</span>
+
+<span style="font-size:75%">
+-   Not all patients are expected to stay in the study for its entire duration, The study anticipated a 10% loss to follow-up. For example, if the target sample size is 1,600, then with a 10% loss to follow-up, only about 1,440 patients would actually complete the study. To account for this, 1,604 patients were recruited.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### statistical analysis - Sample size Calculation
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("2_trial_profile.jpg")
+```
+
+------------------------------------------------------------------------
+
+## Method
+###### statistical analysis - Data Presentation
+
+<span style="font-size:75%">
+-   Categorical Data: Categorical data were expressed as numbers and percentages.
+</span>
+
+<span style="font-size:75%">
+-   Continuous Data: Continuous data were summarized as mean (SD) for normally distributed data and median (interquartile range [IQR]) for skewed distributions.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### statistical analysis - Time-to-Event analysis
+
+<span style="font-size:75%">
+-   **The Kaplan-Meier method** was used to estimate the cumulative incidence of the primary endpoint (MACE) over 1 year. This method accounts for censored data (patients lost to follow-up or without events at the end of the study).
+</span>
+
+<span style="font-size:75%">
+-   **The log-rank test** was used to compare time-to-event distributions between the two groups.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### statistical analysis - Hazard Ratios
+
+<span style="font-size:75%">
+-   Hazard ratios (HRs) and their 95% confidence intervals (CIs) were calculated using **Cox proportional hazards models**. These models were employed to estimate the relative risk of experiencing a MACE event between the two groups over time.
+</span>
+
+<span style="font-size:75%">
+-   The hazard ratio margin used to establish superiority was 1.0. A hazard ratio less than 1 indicated a lower risk of events in the OCT-guidance group compared to the angiography-guidance group.
+</span>
+
+<span style="font-size:75%">
+-   The proportional hazards assumption was assessed using **Schoenfeld residuals**, a statistical method to check if the HR between the groups remained constant over time.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### statistical analysis - Prespecified analysis and Psot-hoc analysis
+
+<span style="font-size:75%">
+-   Prespecified analyses were conducted in the **per-protocol population**, excluding patients who did not receive the assigned treatment, allowing for a clearer evaluation of the true treatment effect.
+</span>
+
+<span style="font-size:75%">
+-   **Post-hoc analysis** was conducted in the as-treated population, where patients were analyzed based on the actual treatment they received, regardless of their original assignment.
+</span>
+
+------------------------------------------------------------------------
+
+## Method
+###### statistical analysis - Exploratory Subgroup Analyses
+
+<span style="font-size:75%">
+-   Exploratory analyses were performed across several clinically and angiographically relevant factors, including **age, sex, hypertension, diabetes, acute myocardial infarction, long lesions, and bifurcation lesions.** The goal of these analyses was to assess the consistency of treatment effects across different patient characteristics.
+</span>
+
+<span style="font-size:75%">
+The study aimed to determine whether OCT-guided PCI had better outcomes in certain subgroups or whether the treatment effect was consistent across all characteristics.
+</span>
+
+------------------------------------------------------------------------
+
+## Result
+###### Study Population and Group Allocation
+
+<span style="font-size:75%">
+During the study period, a total of 1,604 patients with complex coronary artery lesions requiring PCI were enrolled. Out of these, 803 patients were randomly assigned to the OCT-guided PCI group, and 801 patients were assigned to the angiography-guided PCI group.
+
+The average age of the patients was 64 years, with approximately 80% being male.
+</span>
+
+------------------------------------------------------------------------
+
+## Result
+###### Baseline characteristics
+
+<span style="font-size:75%">
+-   814 patients (51%) presented with stable angina, and 790 patients (49%) presented with acute coronary syndrome. Data regarding race or ethnicity were not collected.
+</span>
+
+<span style="font-size:75%">
+-   The number of target lesions, as well as the median number and length of implanted stents, did not significantly differ between the groups.
+</span>
+
+<span style="font-size:75%">
+-   814 patients (51%) presented with stable angina, and 790 patients (49%) presented with acute coronary syndrome. Data regarding race or ethnicity were not collected.
+</span>
+
+------------------------------------------------------------------------
+
+## Result
+###### Baseline characteristics
+
+```{r}
+library(knitr)
+kable(table_base, caption = "Baseline Characteristics of OCT-guided vs Angiography-guided PCI") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F, font_size = 15) %>%
+  scroll_box(width = "100%", height = "500px")
+```
+
+------------------------------------------------------------------------
+
+## Result
+###### Primary Endpoint
+
+<span style="font-size:75%">
+99% of patients (1,588 of 1,604) completed 1-year follow-up. The median follow-up duration was 365 days for both groups (IQR 365–365).
+The primary endpoint (MACE) occurred in **37 patients (5%) in the OCT-guided PCI group** and **59 patients (7%) in the angiography-guided PCI group.**
+This corresponds to an absolute reduction in the primary endpoint of –2.8% in the OCT-guided group compared to the angiography-guided group.
+</span>
+
+------------------------------------------------------------------------
+
+## Result
+###### Post-Hoc Analyses
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("3_kaplan_meier_plot.jpg")
+```
+
+------------------------------------------------------------------------
+
+## Result
+###### Primary Endpoint
+
+```{r}
+library(knitr)
+kable(table_hr, caption = "Clinical outcomes in the intention-to-treat population, 1 year after randomisation") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F, font_size = 15) %>%
+  scroll_box(width = "100%", height = "500px")
+```
+
+------------------------------------------------------------------------
+
+## Result
+###### Secondary endpoint
+<span style="font-size:75%">
+-   All-cause death and cardiac death did not significantly differ between the two groups.
+</span>
+
+<span style="font-size:75%">
+-   The incidence of periprocedural and overall myocardial infarctions was also similar between the groups, but the incidence of spontaneous myocardial infarction was significantly lower in the OCT-guided group.
+</span>
+
+<span style="font-size:75%">
+-   **12 patients (2%) in the OCT-guided group** and **33 patients (4%) in the angiography-guided group** underwent ischemia-driven target-vessel revascularization.
+</span>
+
+<span style="font-size:75%">
+-   Additionally, the OCT-guided group had a **lower rate of target-lesion revascularization and any revascularization** compared to the angiography-guided group.
+</span>
+
+------------------------------------------------------------------------
+
+## Result
+###### Post-Hoc Analyses
+
+<span style="font-size:75%">
+-   Composite endpoints (cardiac death, spontaneous myocardial infarction, stent thrombosis, or ischemia-driven target-vessel revascularization) were lower in the OCT-guided group compared to the angiography-guided group.
+</span>
+
+<span style="font-size:75%">
+-   In the OCT-guided group, 767 patients (96%) were evaluated for stent optimization. Among these patients, 73% met the criteria for stent expansion, 81% for stent apposition, and >99% for edge dissection.
+545 patients (71%) met all three criteria for stent optimization.
+</span>
+
+<span style="font-size:75%">
+-   Patients with stent optimization had lower rates of the primary endpoint compared to those with stent sub-optimization (3% vs. 9%; absolute difference –5.6%).
+</span>
+
+<span style="font-size:75%">
+-   When comparing patients with stent sub-optimization and those in the angiography-guided PCI group, there was no significant difference in the primary endpoint (9% vs. 7%; absolute difference 1.2%).
+</span>
+
+------------------------------------------------------------------------
+
+## Result
+###### Post-Hoc Analyses
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("4_subgroup_analysis.jpg")
+```
+
+------------------------------------------------------------------------
+
+## Result
+###### Sensitivity Analyses and Consistency Across Populations
+
+<span style="font-size:75%">
+-   The baseline angiographic and procedural characteristics and clinical outcomes in the per-protocol and as-treated populations were consistent with those in the intention-to-treat population.
+</span>
+
+<span style="font-size:75%">
+-   A sensitivity analysis excluding patients who underwent a second randomization for post-stenting-only OCT evaluation showed similar results.
+</span>
+
+<span style="font-size:75%">
+-   When comparing patients who had both pre-stenting and post-stenting OCT evaluation to those who had angiography-guided PCI, the results remained statistically consistent.
+</span>
+
+<span style="font-size:75%">
+-   n a post-hoc analysis, treating site or operator as a random effect did not alter the primary endpoint results.
+Exploratory subgroup analyses demonstrated consistent effects of OCT guidance across various subsets, including age, sex, and clinical presentations.
+</span>
+
+------------------------------------------------------------------------
+
+## Discussion
+
+-   이 슬라이드는 Quarto로 작성되었습니다.
+-   Reveal.js를 기반으로 PPT 형식의 슬라이드를 생성합니다.
+
+
+
+<div style="text-align: center;">
+# Fin.
+</div>
