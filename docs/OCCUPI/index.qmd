@@ -481,7 +481,7 @@ The study aimed to determine whether OCT-guided PCI had better outcomes in certa
 ###### Study Population and Group Allocation
 
 <span style="font-size:75%">
-During the study period, a total of 1,604 patients with complex coronary artery lesions requiring PCI were enrolled. Out of these, 803 patients were randomly assigned to the OCT-guided PCI group, and 801 patients were assigned to the angiography-guided PCI group.
+During the study period, a total of 1,604 patients with complex coronary artery lesions requiring PCI were enrolled. Out of these, **803** patients were randomly assigned to the **OCT-guided PCI group**, and **801** patients were assigned to the **angiography-guided PCI group.**
 
 The average age of the patients was 64 years, with approximately 80% being male.
 </span>
@@ -496,7 +496,7 @@ The average age of the patients was 64 years, with approximately 80% being male.
 </span>
 
 <span style="font-size:75%">
--   The number of target lesions, as well as the median number and length of implanted stents, did not significantly differ between the groups.
+-   The number of target lesions, as well as the median number and length of implanted stents, **did not significantly differ** between the groups.
 </span>
 
 <span style="font-size:75%">
@@ -529,10 +529,10 @@ This corresponds to an absolute reduction in the primary endpoint of –2.8% in 
 ------------------------------------------------------------------------
 
 ## Result
-###### Post-Hoc Analyses
+###### Primary Endpoint
 
 ```{r, echo=FALSE, out.width="60%"}
-knitr::include_graphics("3_kaplan_meier_plot.jpg")
+knitr::include_graphics("3_1_primaryendpoint.jpg")
 ```
 
 ------------------------------------------------------------------------
@@ -595,6 +595,15 @@ kable(table_hr, caption = "Clinical outcomes in the intention-to-treat populatio
 ###### Post-Hoc Analyses
 
 ```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("3_2_posthoc.jpg")
+```
+
+------------------------------------------------------------------------
+
+## Result
+###### Post-Hoc Analyses
+
+```{r, echo=FALSE, out.width="60%"}
 knitr::include_graphics("4_subgroup_analysis.jpg")
 ```
 
@@ -616,18 +625,111 @@ knitr::include_graphics("4_subgroup_analysis.jpg")
 </span>
 
 <span style="font-size:75%">
--   n a post-hoc analysis, treating site or operator as a random effect did not alter the primary endpoint results.
+-   In a post-hoc analysis, treating site or operator as a random effect did not alter the primary endpoint results.
 Exploratory subgroup analyses demonstrated consistent effects of OCT guidance across various subsets, including age, sex, and clinical presentations.
 </span>
 
 ------------------------------------------------------------------------
 
 ## Discussion
+###### Key findings
 
--   이 슬라이드는 Quarto로 작성되었습니다.
--   Reveal.js를 기반으로 PPT 형식의 슬라이드를 생성합니다.
+<span style="font-size:75%">
+-   OCT-guided PCI led to a **reduced risk of a 1-year composite of major adverse cardiac events (MACE),** including cardiac death, myocardial infarction, stent thrombosis, and ischaemia-driven target-vessel revascularization, compared to angiography-guided PCI.
+</span>
 
+------------------------------------------------------------------------
 
+## Discussion
+###### Comparison with Existing Literature
+
+<span style="font-size:75%">
+-   The authors compare results with other trials such as IVUS-XPL, ULTIMATE, and RENOVATE-COMPLEX-PCI, which also **showed the benefit of intravascular imaging,** such as IVUS and OCT, in reducing adverse cardiac events, particularly in patients with complex lesions or long drug-eluting stent implantation.
+</span>
+
+<span style="font-size:75%">
+-   The OCCUPI trial builds on these findings, showing that OCT-guided PCI yields clinical benefits similar to IVUS-guided PCI in complex cases, suggesting that both methods may offer comparable advantages.
+</span>
+
+------------------------------------------------------------------------
+
+## Discussion
+###### Clinical Implications
+
+<span style="font-size:75%">
+-   The findings suggest that OCT-guided PCI should be more broadly adopted in cases involving complex coronary lesions, due to its ability to significantly **reduce the rate of spontaneous myocardial infarction and revascularization procedures.**
+</span>
+
+<span style="font-size:75%">
+-   This study also highlights the importance of stent optimization, showing that patients who met the OCT criteria for **optimal stent expansion, apposition, and edge dissection** had significantly better outcomes.
+</span>
+
+------------------------------------------------------------------------
+
+## Discussion
+###### Comparison with Other Trials 
+
+<span style="font-size:75%">
+-   While the OCCUPI trial demonstrated a clear benefit of OCT-guided PCI, the OCTOBER and ILUMIEN IV trials showed differing results, with ILUMIEN IV **failing to find a significant difference** in the primary endpoint of target-vessel failure.
+</span>
+
+<span style="font-size:75%">
+The authors attribute these differences to several factors, including:
+-   patient Population: Differences in patient selection, such as including patients with non-complex lesions or diabetes in ILUMIEN IV, may have diluted the impact of OCT guidance.
+</span>
+
+<span style="font-size:75%">
+-   Lesion Characteristics: Left main coronary artery lesions were included in OCCUPI but excluded in ILUMIEN IV, which could explain the superior outcomes in the more complex cases of the OCCUPI trial.
+</span>
+
+<span style="font-size:75%">
+-   Stent Optimization: The greater difference in post-procedural minimal lumen diameter in OCCUPI compared to ILUMIEN IV suggests that better stent optimization in OCCUPI may have contributed to better outcomes.
+</span>
+
+------------------------------------------------------------------------
+
+## Discussion
+###### Limitations
+
+<span style="font-size:75%">
+-  Short Follow-up: The authors acknowledge the relatively short follow-up period of 1 year, which may **limit the long-term generalizability** of the results.
+</span>
+
+<span style="font-size:75%">
+-   Masking: Complete blinding was not possible due to the different procedural techniques used in each group. However, endpoint adjudication was blinded to minimize bias.and Masked OCT assessments were not done in the angiography-guidance group.
+</span>
+
+<span style="font-size:75%">
+-   Operator Experience: Experience with intravascular imaging techniques may have influenced the results, with operators familiar with OCT or IVUS possibly performing better even in the angiography-guided group.
+</span>
+
+<span style="font-size:75%">
+-   Event Rate: The lower-than-expected event rate for the primary endpoint reduced the study's power, particularly for individual components of the composite endpoint, such as cardiac death.
+</span>
+
+<span style="font-size:75%">
+-   Sample Representation: The trial included only South Korean patients and had an underrepresentation of female patients, which may limit the applicability of the results to broader populations.
+</span>
+
+------------------------------------------------------------------------
+
+## Conclusion
+
+<span style="font-size:75%">
+1. Providing **Strong Statistical Evidence** for the Clinical Superiority of OCT-Guided PCI
+</span>
+
+<span style="font-size:75%">
+2. Statistically Significant **Results in a Complex Lesion Population**
+</span>
+
+<span style="font-size:75%">
+3. **Supporting the Importance of Stent Optimization** with Statistical Evidence
+</span>
+
+<span style="font-size:75%">
+4. Validating Clinical Efficacy through Clear **Comparisons with Control Groups**
+</span>
 
 <div style="text-align: center;">
 # Fin.
