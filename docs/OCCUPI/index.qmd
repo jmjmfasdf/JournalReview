@@ -288,18 +288,6 @@ The main goal of the OCCUPI study is **to evaluate whether PCI guided by OCT res
 
 ------------------------------------------------------------------------
 
-## Introduction
-
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("1_criteria.jpg")
-```
-
-::: {.notes}
-
-:::
-
-------------------------------------------------------------------------
-
 ## Recent studies
 
 <span style="font-size:75%">
@@ -364,6 +352,18 @@ Authors found no previous **randomized controlled trials** that compared clinica
 <span style="font-size:75%">
 -   In the angiography-guidance group, standard angiographic methods were used. Independent core laboratories analyzed all OCT data and angiograms.
 </span>
+
+::: {.notes}
+
+:::
+
+------------------------------------------------------------------------
+
+## Method
+
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics("1_criteria.jpg")
+```
 
 ::: {.notes}
 
